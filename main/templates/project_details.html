@@ -65,15 +65,6 @@
     </div>
   {% endif %}
 
-  <div class="project-links">
-    {% if project.link %}
-      <a href="{{ project.link }}" class="project-link">🌐 Live Project</a>
-    {% endif %}
-    {% if project.github_repo %}
-      <a href="{{ project.github_repo }}" class="project-link">💻 GitHub Repo</a>
-    {% endif %}
-  </div>
-
   {% if project.readme_file %}
     <a href="{{ project.readme_file.url }}" class="project-link">📄 View README</a>
   {% endif %}

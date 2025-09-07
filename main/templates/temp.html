@@ -111,3 +111,104 @@
 </div>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% load video_embed %}
+{% load static %}
+{% block content %}
+
+<div class="project-detail card">
+    <h2 class="project-title">{{ project.title }}</h2>
+
+    <!-- Screenshots -->
+    {% if project.screenshots.all %}
+        <h4>Screenshots:</h4>
+        <div class="screenshots-container">
+            {% for screenshot in project.screenshots.all %}
+                <div class="screenshot-card">
+                    <img src="{{ screenshot.image.url }}" 
+                         alt="Screenshot of {{ project.title }}" 
+                         class="screenshot-img">
+                    {% if screenshot.caption %}
+                        <p class="screenshot-caption">{{ screenshot.caption }}</p>
+                    {% endif %}
+                    {% if screenshot.explanation %}
+                        <p class="screenshot-explanation">{{ screenshot.explanation }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% elif project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+    {% endif %}
+
+    <!-- Demo Video -->
+    {% if project.demo_video %}
+        <h4>Demo Video:</h4>
+        <div class="video-container">
+            <iframe width="560" height="315" 
+                src="{{ project.demo_video|video_embed }}" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+    {% endif %}
+
+    <!-- Links -->
+    <div class="project-links">
+        {% if project.link %}
+            <a href="{{ project.link }}" class="project-link">🌐 Live Demo</a>
+        {% endif %}
+        {% if project.github_repo %}
+            <a href="{{ project.github_repo }}" class="project-link">💻 GitHub Repo</a>
+        {% endif %}
+    </div>
+
+    <!-- README File -->
+    {% if project.readme_file %}
+        <h4>Documentation:</h4>
+        <a href="{{ project.readme_file.url }}" class="project-link">📄 View README</a>
+    {% endif %}
+</div>
+
+<!-- Screenshot Modal -->
+<div id="screenshotModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div id="caption" class="modal-caption"></div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/project_modal.js' %}?v=2"></script>
+{% endblock %}
+
