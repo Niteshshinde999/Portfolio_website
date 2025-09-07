@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="projects card">
+    <h2>Projects</h2>
+    {% for project in projects %}
+        <div class="project card">
+            <li>
+                <a href="{% url 'project_detail' project.pk %}" class="project-title">{{ project.title }}</a>
+                <!-- Show tools for this project -->
+                {% if project.tools.all %}
+                    <ul>
+                        {% for tool in project.tools.all %}
+                            <li>{{ tool.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

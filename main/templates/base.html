@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+</head>
+<script src="{% static 'js/menu.js' %}?v=2"></script>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 class="site-title">Hello, Welcome My Portfolio</h1>
+            <button class="menu-toggle">☰</button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'projects' %}">Projects</a></li>
+                    <li><a href="{% url 'resume' %}">Resume</a></li>
+                    <li><a href="{% url 'experience' %}">Experiences</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Main -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Heisenberg | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

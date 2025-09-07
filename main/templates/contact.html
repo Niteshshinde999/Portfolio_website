@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for contact in contacts %}
+    <section class="card" id="contact">
+        <h2>Contact Info</h2>
+        {% for contact in contacts %}
+            <div class="contact card">
+                <h3>{{ contact.name }}</h3>
+                {% if contact.mobile_no %}
+                    <p>Mobile: {{ contact.mobile_no }}</p>
+                {% endif %}
+                {% if contact.email %}
+                    <p>Email: <a href="mailto:{{ contact.email }}" class="links-list">{{ contact.email }}</a></p>
+                {% endif %}
+                {% if contact.links.exists %}
+                    <h4>Social Links</h4>
+                    <ul>
+                        {% for link in contact.links.all %}
+                            <li><a href="{{ link.url }}" class="links-list">{{ link.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </section>
+</div>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+./media
+./staticfiles
+.env
+./__pycache
+./main/stactic/css/s1.css
+./main/static/js/profile_photo.js
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.mo
+
+# SQLite database (don’t commit to GitHub, only keep on EC2)
+db.sqlite3
+
+# Media & Static
+media/             # user uploaded files (e.g. images, resumes)
+staticfiles/       # collected static files
+static_root/
+
+# Django migrations (keep these to migrate DB easily)
+# */migrations/
+# !*/migrations/__init__.py
+
+# Secrets / Env
+.env
+*.env
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Test / Coverage
+.coverage
+htmlcov/
+.tox/
+pytest_cache/
+.coverage.*
+.mypy_cache/
+.pytest_cache/
+
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/

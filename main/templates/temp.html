@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    <!-- ===== About Me ===== -->
+    <section class="card" id="about-me">
+        <div style="display: flex; gap: 20px; align-items: center;">
+            {% if myinfo.first.photo %}
+                <img class="profile-photo" src="{{ myinfo.first.photo.url }}" alt="{{ myinfo.first.name }}">
+            {% endif %}
+            <div>
+                <h1>{{ myinfo.first.name }}</h1>
+                <p>{{ myinfo.first.profile }}</p>
+                {% if myinfo.first.email %}
+                    <p>Email: <a href="mailto:{{ myinfo.first.email }}" class="links-list">{{ myinfo.first.email }}</a></p>
+                {% endif %}
+                {% if myinfo.first.resume %}
+                    <a href="{{ myinfo.first.resume.url }}" class="resume-link" target="_blank">Download Resume</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section class="card" id="skills">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            {% for skill in skills %}
+                <li>
+                    <span class="skill-name">{{ skill.name }}</span>
+                    <span class="skill-level">{{ skill.proficiency }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section class="card" id="projects">
+        <h2>Projects</h2>
+        <div class="home_container">
+            {% for project in projects %}
+                <div class="project-detail">
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width:100%; border-radius:8px; margin-bottom:10px;">
+                    {% endif %}
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+                    {% if project.link %}
+                        <a href="{{ project.link }}" class="project-link" target="_blank">View Project</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- ===== Certifications ===== -->
+    <section class="card" id="certifications">
+        <h2>Certifications</h2>
+        <ul class="skills-list">
+            {% for cert in certifications %}
+                <li>
+                    <span class="skill-name">{{ cert.title }}</span>
+                    <span class="skill-level">{{ cert.organization }} - {{ cert.date|date:"M Y" }}</span>
+                    {% if cert.certification_url %}
+                        <a href="{{ cert.certification_url }}" class="certification-link" target="_blank">View</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section class="card" id="experience">
+        <h2>Experience</h2>
+        <ul class="skills-list">
+            {% for exp in experiences %}
+                <li>
+                    <span class="skill-name">{{ exp.role }} at {{ exp.company }}</span>
+                    <span class="skill-level">{{ exp.start_date|date:"M Y" }} - {% if exp.end_date %}{{ exp.end_date|date:"M Y" }}{% else %}Present{% endif %}</span>
+                    <p>{{ exp.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- ===== Contact Info ===== -->
+    <section class="card" id="contact">
+        <h2>Contact Info</h2>
+        {% for contact in contacts %}
+            <div class="contact card">
+                <h3>{{ contact.name }}</h3>
+                {% if contact.mobile_no %}
+                    <p>Mobile: {{ contact.mobile_no }}</p>
+                {% endif %}
+                {% if contact.email %}
+                    <p>Email: <a href="mailto:{{ contact.email }}" class="links-list">{{ contact.email }}</a></p>
+                {% endif %}
+                {% if contact.links.exists %}
+                    <h4>Social Links</h4>
+                    <ul>
+                        {% for link in contact.links.all %}
+                            <li><a href="{{ link.url }}" target="_blank" class="links-list">{{ link.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </section>
+
+</div>
+
+{% endblock %}

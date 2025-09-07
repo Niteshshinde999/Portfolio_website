@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="resume-container">
+    <h2>{{ resume.title }}</h2>
+
+    {% if resume.file %}
+        <!-- Resume Link -->
+        <button id="resumePreviewBtn" class="resume-link" data-pdf-url="{{ resume.file.url }}">
+            📄 View Resume
+        </button>
+    {% else %}
+        <p>No resume uploaded yet.</p>
+    {% endif %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="{% static 'js/resume.js' %}?v=2"></script>
+<!-- Resume Modal -->
+<div id="resumeModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <span class="close" id="closeResume">&times;</span>
+
+        <!-- PDF.js Viewer -->
+        <div id="resumeFrame" style="width:100%; height:600px; overflow-y:auto; border:1px solid #ccc;"></div>
+
+        <br>
+        <a href="{{ resume.file.url }}" download class="download-btn">⬇️ Download Resume</a>
+    </div>
+</div>
+
+<!-- Load JS -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="{% static 'js/resume.js' %}?v=2"></script> -->
+
+{% endblock %}
